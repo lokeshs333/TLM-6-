@@ -133,3 +133,39 @@ initial begin
 end
 
 endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+What this example demonstrates
+uvm_blocking_transport_port supports request-response communication in a single transaction.
+The producer calls transport(request, response) to send data and receive a reply.
+uvm_blocking_transport_imp implements the transport() task in the consumer.
+The consumer receives the producer's request (datar) and returns its own response (datas).
+This demonstrates blocking transport TLM, where request and response are exchanged through a single interface.
+
+TLM data flow:
+
+Producer
+ transport(request, response)
+          │
+          ▼
+blocking_transport_port
+          │
+          ▼
+blocking_transport_imp
+          │
+          ▼
+consumer.transport(request, response)
+          │
+          ▼
+Response returned to Producer
